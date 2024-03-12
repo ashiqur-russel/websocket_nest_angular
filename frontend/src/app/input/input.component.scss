@@ -1,0 +1,11 @@
+.input-group{
+    display: flex;
+    justify-content: space-between;
+    height: 47px;
+
+    .messgae-input{
+        flex-grow: 1;
+        margin-right: 2px;
+    }
+
+}
