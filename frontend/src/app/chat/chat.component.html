@@ -1,1 +1,8 @@
-<p>chat works!</p>
+<div class="chat-window">
+    <div class="messages">
+        <div *ngFor="let message of messages" class="message">
+            {{ message }}
+        </div>
+    </div>
+    <app-input (messageSend)="handleMessageSend($event)"></app-input>
+</div>

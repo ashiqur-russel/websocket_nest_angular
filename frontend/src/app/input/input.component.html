@@ -1,1 +1,6 @@
-<p>input works!</p>
+<form (submit)="sendMessage()">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Type your message here..." [formControl]="messageControl">
+        <button class="btn btn-outline-secondary" type="submit">Send</button>
+    </div>
+</form>
