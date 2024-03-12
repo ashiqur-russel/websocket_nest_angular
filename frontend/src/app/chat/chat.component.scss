@@ -1,15 +1,18 @@
 .chat-window {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    width: 400px; 
+    height: 600px;
     margin: auto;
     border: 1px solid #cccccc;
     padding: 10px;
+    overflow: hidden;
   }
   
   .messages {
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: auto; 
+    margin-bottom: 10px; 
   }
   
   .message {

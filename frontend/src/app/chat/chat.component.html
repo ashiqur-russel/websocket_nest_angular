@@ -1,6 +1,6 @@
 <div class="chat-window">
-    <div class="messages">
-        <div *ngFor="let message of messages" class="message">
+    <div class="messages" #messagesContainer>
+        <div *ngFor="let message of messages" class=" message">
             {{ message }}
         </div>
     </div>
