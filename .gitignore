@@ -1,3 +1,13 @@
 node_modules/
 
-/api/node_modules
+/api/node_modules/
+/frontend/node_modules
+/frontend/.angular
+
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
