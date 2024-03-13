@@ -17,9 +17,16 @@ const websockets_1 = require("@nestjs/websockets");
 const socket_io_1 = require("socket.io");
 let GatewayService = class GatewayService {
     handleEvent(body, client) {
-        console.log(...oo_oo(`435458184_25_4_25_21_4`, body));
-        console.log(...oo_oo(`435458184_26_4_26_39_4`, 'connected', client.id));
+        console.log(...oo_oo(`2483631881_23_4_23_21_4`, body));
+        console.log(...oo_oo(`2483631881_24_4_24_39_4`, 'connected', client.id));
         this.socket.emit("message", body);
+    }
+    handleJoinRoom(client, room) {
+        client.join(room);
+    }
+    handleSendMessage(client, { content, roomId }) {
+        console.log(...oo_oo(`2483631881_36_6_36_26_4`, content));
+        this.socket.to(roomId).emit('receiveMessage', { content, senderId: client.id });
     }
 };
 __decorate([
@@ -34,6 +41,18 @@ __decorate([
     __metadata("design:paramtypes", [Object, socket_io_1.Socket]),
     __metadata("design:returntype", Object)
 ], GatewayService.prototype, "handleEvent", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('joinRoom'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [socket_io_1.Socket, String]),
+    __metadata("design:returntype", void 0)
+], GatewayService.prototype, "handleJoinRoom", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('sendMessage'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [socket_io_1.Socket, Object]),
+    __metadata("design:returntype", void 0)
+], GatewayService.prototype, "handleSendMessage", null);
 GatewayService = __decorate([
     (0, websockets_1.WebSocketGateway)({
         cors: {

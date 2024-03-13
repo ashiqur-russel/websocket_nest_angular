@@ -1,7 +1,13 @@
+<div>
+    <input type="text" [(ngModel)]="roomId" placeholder="Enter Room ID">
+    <button (click)="joinRoom()">Join Room</button>
+</div>
+
 <div class="chat-window">
     <div class="messages" #messagesContainer>
-        <div *ngFor="let message of messages" class=" message">
-            {{ message }}
+        <div *ngFor="let message of messages" class="message"
+            [ngClass]="{'my-message': message.isOwnMessage, 'other-message': !message.isOwnMessage}">
+            {{ message.content?.content }}
         </div>
     </div>
     <app-input (messageSend)="handleMessageSend($event)"></app-input>

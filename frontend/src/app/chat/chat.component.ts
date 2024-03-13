@@ -2,23 +2,37 @@ import { Component,ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef  } fr
 import { FormControl, FormGroup } from '@angular/forms';
 import { WebSocketService } from '../web-socket.service';
 
+interface ChatMessage {
+  content: string;
+  isOwnMessage: boolean;
+}
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements AfterViewInit {
-  messages: string[] = [];
+  messages: any[] = [];
+  roomId: string = ''
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
   constructor(private cdr: ChangeDetectorRef,private webSocketService: WebSocketService ) {}
 
 
-  handleMessageSend(message:string) {
+  handleMessageSend(content: string) {
+    if (!this.roomId.trim()) {
+      console.error('No room ID specified.');
+      return;
+    }
 
-    console.log(message)
-    //this.messages.push(message);
-    this.webSocketService.sendMessage(message);
+    const message: ChatMessage = {
+      content: content,
+      isOwnMessage: true
+    };
+  
+    this.webSocketService.sendMessage(message, this.roomId); 
+    this.messages.push(message); 
     this.scrollToBottom();
   }
 
@@ -29,17 +43,31 @@ export class ChatComponent implements AfterViewInit {
   }
 
   private subscribeToMessages(): void {
-    this.webSocketService.getMessages().subscribe((message: any) => {
-      console.log(message)
-      this.messages.push(message);
+    this.webSocketService.getMessages().subscribe((content: any) => {
+      const message: ChatMessage = {
+        content: content,
+        isOwnMessage: content.senderId === this.webSocketService.currentUserId
+      };
+      this.messages.push(content);
+      console.log(this.messages)
       this.scrollToBottom();
     });
   }
+
+  
 
   private scrollToBottom(): void {
     setTimeout(() => {
       this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
     }, 0);
+  }
+
+  joinRoom() {
+    if (!this.roomId.trim()) {
+      console.error('Please enter a room ID.');
+      return;
+    }
+    this.webSocketService.joinRoom(this.roomId);
   }
 
 }
