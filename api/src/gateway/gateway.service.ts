@@ -7,7 +7,12 @@ import {
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
 
-@WebSocketGateway()
+@WebSocketGateway({
+  cors: {
+    origin: 'http://localhost:4200',
+    credentials: true,
+  },
+})
 export class GatewayService {
 
     @WebSocketServer()
@@ -19,6 +24,8 @@ export class GatewayService {
   ): any {
     console.log(body);
     console.log('connected', client.id);
+
+    this.socket.emit("message",body)
 
   }
 }

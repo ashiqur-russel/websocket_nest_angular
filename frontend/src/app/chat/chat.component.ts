@@ -1,5 +1,6 @@
 import { Component,ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef  } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { WebSocketService } from '../web-socket.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,19 +11,29 @@ export class ChatComponent implements AfterViewInit {
   messages: string[] = [];
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef,private webSocketService: WebSocketService ) {}
 
 
   handleMessageSend(message:string) {
 
     console.log(message)
-    this.messages.push(message);
+    //this.messages.push(message);
+    this.webSocketService.sendMessage(message);
     this.scrollToBottom();
   }
 
   ngAfterViewInit() {
+    this.subscribeToMessages();
     this.scrollToBottom();
     this.cdr.detectChanges();
+  }
+
+  private subscribeToMessages(): void {
+    this.webSocketService.getMessages().subscribe((message: any) => {
+      console.log(message)
+      this.messages.push(message);
+      this.scrollToBottom();
+    });
   }
 
   private scrollToBottom(): void {
