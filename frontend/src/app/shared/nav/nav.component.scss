@@ -1,0 +1,25 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(218, 211, 211);
+
+    .logo{
+        display: flex;
+        align-items: center;
+    }
+
+    ul{
+        display: flex;
+        justify-content: space-between;
+        gap: 3px;
+        
+    }
+    
+    ul>li{
+        padding: 10px;
+        list-style: none;
+        border: 1px solid gainsboro;
+        cursor: pointer;
+        border-radius: 5px;    
+    }
+}

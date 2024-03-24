@@ -4,14 +4,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChatComponent } from './chat/chat.component';
-import { InputComponent } from './input/input.component';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './shared/nav/nav.component';
+import { LoginComponent } from './shared/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent,
-    InputComponent
+    HomeComponent,
+    NavComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

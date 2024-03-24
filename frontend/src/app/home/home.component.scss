@@ -1,0 +1,35 @@
+.form{
+    margin-top: 5px;
+
+    input[type="text"] {
+        border: 1px solid yellowgreen;
+        padding: 10px;
+        border-radius: 8px;
+        margin-right: 4px;
+        display: inline-block;
+        width: 30%;
+      }
+
+      button {
+        padding: 10px;
+        border: 1px solid darkgray;
+        background: gainsboro;
+        color: rgb(91, 84, 84);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      
+}
+:hover{
+    button{
+        color: rgb(216, 206, 206);
+        background: rgb(75, 71, 71);
+    }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+
+    input[type="text"] {
+        width: 70%;
+    }   
+  }
