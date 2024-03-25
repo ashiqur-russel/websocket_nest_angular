@@ -13,12 +13,13 @@ export class AuthService {
   ) { }
 
   get isLoggedIn$() {
-    return this.loggedIn.asObservable();
+    return !!localStorage.getItem('isLoggedin');
   }
 
   login(username: string, password: string): boolean {
     if (username === 'user' && password === '1234') {
       this.loggedIn.next(true);
+      localStorage.setItem('isLoggedin', 'true');
       this.router.navigate(['/home']);
       return true;
     }
@@ -28,6 +29,7 @@ export class AuthService {
 
   logout() {
     this.loggedIn.next(false);
+    localStorage.removeItem('isLoggedin');
     this.router.navigate(['/login']);
 }
 
