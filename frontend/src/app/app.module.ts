@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { LoginComponent } from './shared/login/login.component';
+import { HousingLocationComponent } from './housing-location/housing-location.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { LoginComponent } from './shared/login/login.component';
     HomeComponent,
     NavComponent,
     LoginComponent,
+    HousingLocationComponent,
   ],
   imports: [
     BrowserModule,
