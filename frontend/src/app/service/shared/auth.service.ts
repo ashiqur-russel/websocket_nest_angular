@@ -6,20 +6,26 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn());
 
   constructor(
     private router: Router
   ) { }
 
-  get isLoggedIn$() {
+  
+
+  public isLoggedIn(): boolean {
     return !!localStorage.getItem('isLoggedin');
+  }
+
+  get isLoggedIn$() {
+    return this.loggedIn.asObservable();
   }
 
   login(username: string, password: string): boolean {
     if (username === 'user' && password === '1234') {
-      this.loggedIn.next(true);
       localStorage.setItem('isLoggedin', 'true');
+      this.loggedIn.next(true);
       this.router.navigate(['/home']);
       return true;
     }
@@ -27,9 +33,10 @@ export class AuthService {
     return false;
     }
 
+    
   logout() {
-    this.loggedIn.next(false);
     localStorage.removeItem('isLoggedin');
+    this.loggedIn.next(false);
     this.router.navigate(['/login']);
 }
 

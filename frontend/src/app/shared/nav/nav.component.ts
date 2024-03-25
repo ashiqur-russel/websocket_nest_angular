@@ -8,7 +8,11 @@ import { AuthService } from '../../service/shared/auth.service';
 })
 export class NavComponent {
 
+  isLoggedIn$ = this.authService.isLoggedIn$;
+
   constructor(public authService: AuthService){};
-  
+  onLogout(){
+    this.authService.logout()
+  }
 
 }

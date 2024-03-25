@@ -1,8 +1,8 @@
 <section class="nav">
     <div class="logo">Logo</div>
     <ul class="item">
-        <li class="list-item" *ngIf="(authService.isLoggedIn$ | async) === false">Login</li>
-        <li class="list-item" *ngIf="(authService.isLoggedIn$ | async) === false">Register</li>
-        <li class="list-item" *ngIf="authService.isLoggedIn$ | async">Logout</li>
+        <li class="list-item" *ngIf="(isLoggedIn$ | async) === false">Login</li>
+        <li class="list-item" *ngIf="(isLoggedIn$ | async) === false">Register</li>
+        <li class="list-item" *ngIf="isLoggedIn$ | async" (click)='onLogout()'>Logout</li>
     </ul>
 </section>
