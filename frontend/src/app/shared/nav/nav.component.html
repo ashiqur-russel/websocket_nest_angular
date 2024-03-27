@@ -1,6 +1,11 @@
 <section class="nav">
     <div class="logo">Logo</div>
     <ul class="item">
+        <li class="nav-item" *ngIf="isLoggedIn$ | async" (click)='onChat()'>Chat</li>
+        <li class="nav-item" *ngIf="isLoggedIn$ | async" (click)='onHome()'>Home</li>
+
+    </ul>
+    <ul class="item">
         <li class="list-item" *ngIf="(isLoggedIn$ | async) === false">Login</li>
         <li class="list-item" *ngIf="(isLoggedIn$ | async) === false">Register</li>
         <li class="list-item" *ngIf="isLoggedIn$ | async" (click)='onLogout()'>Logout</li>

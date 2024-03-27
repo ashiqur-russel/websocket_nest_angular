@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../service/shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -10,9 +11,15 @@ export class NavComponent {
 
   isLoggedIn$ = this.authService.isLoggedIn$;
 
-  constructor(public authService: AuthService){};
+  constructor(public authService: AuthService, private router : Router){};
   onLogout(){
     this.authService.logout()
+  }
+  onChat(){
+    this.router.navigate(['/chat']);
+  }
+  onHome(){
+    this.router.navigate(['/home']);
   }
 
 }
