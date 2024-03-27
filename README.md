@@ -1,3 +1,6 @@
+![Angular Version](https://img.shields.io/badge/Angular-v12-DD0031?style=flat&logo=angular)
+![NestJS Version](https://img.shields.io/badge/NestJS-v8-E0234E?style=flat&logo=nestjs)
+![MongoDB Version](https://img.shields.io/badge/MongoDB-v4.4-47A248?style=flat&logo=mongodb)
 # Project Description
 
 This project is a full-stack application built with Angular, NestJS, and MongoDB. It's designed to demonstrate a practical implementation of these technologies working together to create a dynamic and responsive web application.
